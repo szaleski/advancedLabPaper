@@ -1,2 +1,21 @@
 \section{Motivation}
-To address student complaints within the advanced lab...
+As time marches ever onward, exisiting courses must adapt, change, and improve to better serve students.
+Often, students complain that university physics lab experiments use outdated, or even obsolete, technology, that they are not engaged by the experiments, or that the topics covered by the experiments are not applicable in their research.
+RWTH Aachen University has identified the above three items to address in an attempt to provide a better laboratory experience for students that utilizes popular modern hardware that engages students in a way that could likely be used by the students in their own research later on.
+To this end, three experiments were identified where modern improvements should be attempted:
+\begin{enumerate}
+\item Gas Detectors and Statistics: Statistics
+\item Detector Principles: Multiple-scattering
+\item Stern-Gerlach
+  
+\end{enumerate}
+
+In all of the above experiments, it was decided to replace part of the experiment with modern data acquisition consisting of Arduino microcontrollers, Raspberry Pis, and/or bluetooth modules.
+The hardware was chosen for a variety of reasons, primarily that they are all inexpensive, easy to acquire and use, and there is significant online support for each.
+An additional consideration was that, with most of the hardware being popular among electronics hobbyists, iit is likely (though not expected) that students have some prior experience with any of the new hardware.
+
+
+In experiment 1, a Raspberry Pi serving an Arduino that connects to an Arduino compatible PIN photodiode Geiger-Mueller (GM) counter replaces a bulky, more traditional, gas GM counter powered by a NIM crate with amplifier and seven-segment display counter.
+In experiment 2, a similar setup to experiment 1 that utilizes four Arduino compatible gas GM counters, rather than a PIN GM, replaces a traditional gas GM.
+In experiment 3, five analog meter readings are replaced by Arduino circuits that send their data via bluetooth (BT) to a BT capable device, either a laptop or a mobile smartphone.
+We detail these in the coming sections.
