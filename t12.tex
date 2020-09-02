@@ -1,2 +1,48 @@
 \section{Detector Principles}
-An update to the Multiple Scattering portion of the Detector Principles experiment...
+The Detector Principles experiment was the next experiment that received an update using new microcontroller technology.
+In this experiment, students perform three minor mini experiments to gain some understanding of how particles are detected.
+These mini experiments are:
+\begin{itemize}
+\item Measuring the momentum of charged ($\beta$) particles in a magnetic field
+\item Measuring the energy loss of radiation passing through material
+\item Multiple scattering measurement of charged ($\beta$) particles passing through an absorber
+\end{itemize}
+
+In the first experiment student pass $\beta$ particles through a magnet and measure the momentum through a bending angle measurement.
+In the second experiment students place different absorbers in between different radiation sources to measure the energy loss of different forms of radiation through different types of materials.
+In the final experiment, students measure the angular dependence of $\beta$ particles from the same source but with different materials placed in between the source and the detector.
+It is this last experiment in which the microcontroller technology was introduced.
+
+The proceudure that students followed for the multiple scattering experiment is described here.
+Students place a cylindrically shaped Sr-90 $\beta$ particle source at the center of a circular arc of 180\textdegree.
+This source is placed within an aluminum collimator such that the particles escaping the collimation are those from one of the circular ends of the cylinder.
+The circular arc is graduated in 1\textdegree increments.
+A Cobra3 gas GM, from PHYWE, is placed at the 0\textdegree mark on the circular arc.
+This corresponds to the plane of the GM active area's surface being normal to the collimation of the source.
+The source is $\mathcal{O}(40~cm)$ from the detector.
+This allows for an angularly dispersed distribution of particles arriving at the detector.
+Initially, no absorber is used.
+The GM is allowed to recored for some time $\mathcal{O}(5-10 min)$.
+The students then move the GM by 5-10\textdegree and take another reading of same duration as the previous measurement.
+The students then take measurements at these intervals for all 5/10\textdegree intervals between -60\textdegree and +60\textdegree.
+They then place an absorber and repeat the process for four additional absorbers.
+Once the students are done collecting the data, they then plot the values collected as a function of the angle of the GM relative to the center of collimation of the particle source.
+
+
+The primary reasons to update this setup was to decrease data collection time for this portion of the experiment as well as utilize new technology to better engage students.
+Students had similar complaints as with the Gas Detector and Statistics experiment, namely that the data acquisition was becoming out-dated.
+
+
+To address these issues, it was decided to utilize Arduino and Raspberry Pi hardware as well as utilize several Arduino compatible gas GMs from MightyOhm.
+The GM detector consists of an SBM-22 GM counter mounted on a simple digital counting circuit and PCB.
+It was decided to have four GM detectors spaced 10\textdegree apart from one another on a circle centered on a Sr-90 $\beta$ particle source.
+Each GM was oriented with its longitudinal axis vertical and normal to the particle beam direction.
+A sturcture was engineered in such a way to keep the keep the GM counters centered directly above the angular graduations along the circular segment that was used previously.
+This offers the ability for students to reduce the duration of the experiment, collect more data in the same amount of time, or a combination of the two.
+
+
+Students connect each GM circuit to the same Arduino Uno.
+The Arduino multiplexes the signal information from each GM counter.
+The Arduino is connected via USB to the Raspberry Pi, on which the the data is stored.
+The students do not write their own Arduino sketch, nor do they write their own data acquisition code on the Raspberry Pi.
+Due to time constraints from the other two mini experiments, students are only expected to move the GMs and run simple terminal commands using software written by the laboratory staff that are known to work properly.

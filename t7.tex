@@ -7,6 +7,101 @@ The students then perform a statistical analysis consisting of finding the mean 
 
 The primary reason for updating this setup is that the traditional gas GM that was used no longer functioned properly and was expensive to replace.
 Another reason to move to an updated data acquisition setup was that the NIM crate and supporting modules used to power the GM and register counts required students to record the data using paper and pencil.
-Students have complained that this mode of data acquistion is out-dated, and it is true that many modern experiments use some form of computer, or other electronics, based data acquistion and logging.
+Students have complained that this mode of data acquistion is out-dated, typically stating that many modern experiments use some form of computer, or other electronics, based data acquistion and logging.
 
 
+In an attempt to address these issues, it was decided to use a PIN photodiode GM circuit available from RadiationWatch that is compatible with an Arduino Nano, and a Raspberry Pi, which we will simply refer to as Pi from here.
+The GM is a roughly 1~$cm$ x 1~$cm$ with a thin copper shielding wrapped around it.
+The GM sits on a PCB having four connection pins.
+The Arduino 5~$V$ pin is connected to the V$_{CC}$ pin and the ground pins connect to each.
+These supply power to the GM circuit.
+The GM signal and noise pins each connect to a digital input pin on the Nano.
+These pins send digital HIGH/LOW information from the GM counting circuit.
+The Arduino then connects to the Pi via a USB connection.
+The Pi acts as the data acquisition control and data storage.
+Students can also perform simple analysis since the Pi has Mathematica pre-installed on it.
+
+Except for the USB connections between the Pi and the Arduino, students are not expected to make the physical connections between the detector hardware.
+The Arduino and GM sit in pre-fabricated PCBs designed specifically to sit within an aluminum shielding.
+The GM PCB is held in place by a 3D printed structure connected to a copper pipe.
+The copper pipe aligns the connection between the GM and the Sr-90 source.
+The pipe also collimates the beta source to protect the Arduino from unnecessary exposure to beta radiation.
+
+The focus of the experiment is, primarily, on writing code for a set of programs to acquire and store the data followed by a statistical analysis of the data collected.
+The students are required to write two pieces of code.
+One for controlling the Arduino data acquisition from the GM.
+The other is a simple Python program to read and record all of the data transmitted via the Arduino serial port.
+Python was chosen as the working programming language as an overwehlmingly large majority of students had, at least, some prior experience working with it.
+
+Students were not expected to have any prior experience working with Arduino microcontrollers, though some did.
+The code was written using the Arduino integrated development environment (IDE).
+The structure of the code was meant to be simple.
+Within this code students were expected to :
+
+\begin{enumerate}
+\item Define signal pin and flag variables and counting variables.
+\item Begin the serial connection process for the Arduino.
+\item Initialize the signal pin as an Arduino input pin and set it as digital high (the GM is active low).
+\item Write a data collection loop as follows:
+  \begin{enumerate}
+  \item Perform digital read on signal pin
+  \item Check if signal pin and flag are both low
+    \begin{itemize}
+    \item If both are low, increment signal count and set flag high (this is done to not double count since the signal pulse lasts multiple loops).
+    \item If both are high, reset the flag to low to open another data collection window.
+    \end{itemize}
+  \item Write a simple `if' statement to control the collection timing.
+  \item Send the data collected within the time window via the serial connection.
+  \end{enumerate}
+  
+      
+\end{enumerate}
+
+This code was quite simple for students to understand the flow, though the Arduino IDE utilizes a C-like language.
+Outside of some dfficulty understanding the signal pulse width relation to collection time and why the signals are digital low, there were no other difficulties for the students.
+Most students were able to quickly and easily create this code.
+
+Students were expected to have a little stonger understanding of Python.
+The Python script was still expected to be simple.
+The structure of the Python code was expected to be:
+\begin{enumerate}
+\item Import the PySerial library (this allows communication with the serial USB port within the Python program)
+\item Create an ouput .txt file to store data
+\item Open a serial connection with the Arduino USB port with the proper baud rate.
+\item Within the data collection loop:
+  \begin{enumerate}
+  \item Read the serial data as a list.
+  \item Parse the data list and store the necessary variables (signal count and time interval information).
+  \item Write this data to file.
+    
+  \end{enumerate}
+\item Write the file to disk for later analysis.
+  
+\end{enumerate}
+
+Students tended to have more difficulty with this part of the coding, mostly on the debugging side.
+Even so, most students were able to quickly and easily write this part of the code.
+Once both of these programs are ready students are then able to start with the data collection.
+
+The students then do the following:
+\begin{enumerate}
+\item Confirm that the USB connection between the Pi and the Arduino is connected.
+\item Place the Sr-90 source in the source holder and confirm that it is closed properly.
+\item Compile and load the Arduino program to the Arduino.
+\item Run the Python program to collect the data.
+\item Analyze the data collected.
+  
+\end{enumerate}
+
+Students then remove the Sr-90 source and reposition the GM apparatus to collect cosmic ray muon data.
+The students then anlyzed the data by fitting it to either a Gaussian or a Poisson distribution depending on the source of radiation.
+The information from these fits is then used to fit the data to a $\chi^{2}$ distribution to determine a goodness of fit.
+
+
+In the other half of this experiment, students perform the same experiment using a Cobra3 gas GM from PHYWE.
+This setup utilizes it's own pre-defined software to collect data.
+As the focus of this paper is on the student based interaction with the new Arduino and Pi hardware and the Python programming, we will not elaborate on the Cobra3 part.
+Students apply the same analysis technique to this data as well.
+They, then, qualitatively compare the results of the PIN GM with that of the gas GM.
+
+Students responded well to this experiment.

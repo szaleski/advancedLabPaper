@@ -1,4 +1,6 @@
-\documentclass[12pt]{article}
+\documentclass[10pt, twocolumn, a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage{newtxmath,newtxtext}
 \usepackage{hyperref}
 \usepackage{graphicx}
 \usepackage{indentfirst}
@@ -24,7 +26,7 @@
 
 %%\author[1]{Thomas Hebbeker}
 \author[1]{Kerstin Hoepfner}
-\author[1]{Shawn Zaleski}
+\author[1]{Shawn Zaleski$^\dagger$}
 %%\author[1]{Henning Keller}
 %%\author[1]{Giovanni Mocellin}
 \affil[1]{III Physikalisches Institut A RWTH Aachen University}
@@ -33,7 +35,11 @@
 \date{\empty}
 \pagestyle{empty}
 
+\renewcommand{\thesection}{\Roman{section}}
+
 \begin{document}
+\twocolumn[
+  \begin{@twocolumnfalse}
 \maketitle
 %%\centerline{Gas Electron Chambers in University Advanced Physics Laboratory}
 \noindent
@@ -44,8 +50,9 @@
 Engaging students in a physics lab setting can be challenging, especially while modernizing the experiments currently available. Often, students complain about out-dated equipment or ``cookie cutter" type experiments that do not allow much creative freedom on the part of the student. The advanced undergraduate lab course experiments for particle physics at RWTH Aachen University were updated using inexpensive DIY components such as Arduino and Raspberry Pi. To engage students better using Arduino and Python, coding can be left completely to the students to write or they may be supplied with partial, or complete, working programs. This allows the instructor to tailor the lab to the appropriate skill level of the students. We outline two different implementations in lab experiments. One where the Raspberry Pi and Arduino collect Geiger-Mueller data, and another that allows them to collect data with the Arduino via Bluetooth on their smartphone. Student feedback will be presented.
 
 \end{abstract}
-
-\newpage
+  \end{@twocolumnfalse}
+  \newpage
+]
 
 \input{introduction}
 \input{motivation}
