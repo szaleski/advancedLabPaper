@@ -1,5 +1,5 @@
 \section{Stern-Gerlach Experiment}
-An update to the readout of the Stern-Gerlach Experiment...
+
 The final experiment that was updated with microcontroller technollogy was the Stern-Gerlach experiment.
 In this experiment, students investigate the diffraction effects exhibited on particles passing through a magnetic field.
 The behavior is an observation of the quantization of spin angular momentum and a measurement of the Bohr magneton $\mu_{B}$.
@@ -44,6 +44,32 @@ The atoms are primarily governed by the spin of its electron in the outer-most o
 Thus, the students see that the potassium beam splits into two.
 Adjusting the knob after this, students see that the splitting is equidistant, on opposite sides, from the center.
 
-The primary reason for updating the setup was to replace the large number of analog readings that the students must make.
+The primary reason for updating the setup was to replace the large number of analog readings that the students must make with modern microcontroller readout.
+To replace these signals, Arduino Unos and simple circuits were used to collect these readings.
+It was initially designed such that students would be able to use their smartphones to read the values collected by the Arduinos.
 
+There are, essentially, three general different circuit setups that are used, however some features are shared in common with each circuit.
+These commonalities will be discussed briefly before discussing how each of the three circuits differs.
+Initially, each measurement has an Arduino Uno powered by a 12 V at 1.67 A DC power supply.
+The 5~V and GND pins, as well as the SCL and SDA connections were connected to an ADS1115 12 bit gain amplifier analog to digital converter (ADC).
+The ADS1115 was chosen because it has 6 different gain settings available that allowed some flexibility in precision of the data measurement.
+The same pins that connected the Arduino to the ADS1115 connected to an HC-05 serial bluetooth module.
+Except in one circuit case, one of the four ADS1115 analog input pins and the GND pin connect across a resistor, or voltage divider, depending on the particular circuit.
+The ADS1115 converts this analog voltage reading into a digital signal then sends this information to the Arduino.
+The Arduino then performs a calculation to convert the digital reading into the appropriate current or voltage reading, again depending on the particular circuit.
+The Arduino then sends this information via the Serial line to the bluetooth module.
+Once the students have paired their device to the bluetooth module, and downloaded the free Android app, are able to read the output from the Arduino on their smartphone.
+Due to reasons that will become clear when discussing student feedback in the next section, the bluetooth modules and the power supplies were replaced with a USB connector.
+Students then read all of their data to file using a Python program.
 
+In the special case of the temperature reading, the voltage that is read from the thermocouple is in the 0-10~mV range.
+As such a small voltage value is often observed, the output lead were directly connected to the analog in and the GND connections of the ADS1115.
+This was the simplest circuit.
+
+In the case of current measurement, current sense resistors with resistances between 1-500~$m\Omega$ were used.
+The analog input of the ADS1115 connect to one side of the resistor and the other leg of the resistor connected to the GND pin.
+The small resistance values were chosen so to, as minimally as possible, avoid changing the optimum values flowing through the system.
+
+In the case of the larger voltage from the power supply, theese voltages typically exceed the maximum voltage which the ADS1115 and the Arduino can withstand.
+As such, a voltage divider  with voltage values of 3.33~$k\Omega$ and 6.67~$k\Omega$ were chosen to limit current and reduce the voltages to be within a tolerable range for the microcontroller.
+The ADS1115 measured the voltage across the 3.33~$k\Omega$ resistor.
