@@ -1,6 +1,6 @@
 \section{Stern-Gerlach Experiment}
 
-The final experiment that was updated with microcontroller technollogy was the Stern-Gerlach experiment.
+The final experiment that was updated with micro-controller technology was the Stern-Gerlach experiment.
 In this experiment, students investigate the diffraction effects exhibited on particles passing through a magnetic field.
 The behavior is an observation of the quantization of spin angular momentum and a measurement of the Bohr magneton $\mu_{B}$.
 This experiment was first performed in the 1920's and the theoretical foundations, as well as historical accounts, of the experiment can be found in many graduate level quantum mechanics textbooks.
@@ -12,7 +12,7 @@ The other side of the T-pipe connects to a magnet that is in a shape to produce 
 The magnet sits in between two solenoids that are connected to a DC power supply which produces the current to control the strength of the field.
 The magnet is then connect to a flex pipe, which is followed by another piece of straight pipe with a tungsten wire detector connected at its end.
 The flex pipe allows for the detector wire to be moved horizontally to measure potassium atoms diffracted by the magnetic field.
-The amount of horizontal movement is controlled by a graduated knob attached to a screw above the t-pipe connected to the straight pipe on the otherside of the flex pipe.
+The amount of horizontal movement is controlled by a graduated knob attached to a screw above the t-pipe connected to the straight pipe on the other side of the flex pipe.
 
 
 The detector wire has three connections.
@@ -22,7 +22,7 @@ The final connection is a BNC connector that allows the signal current measured 
 The DC current from the detector is amplified from pA level to mA level.
 Lastly, there is a power supply that supplies the input AC current into the transformer to drive the tungsten wire detector.
 
-There are seven analog readings that students take to monitor the status of the aparatus and measure the diffraction of the potassium atoms.
+There are seven analog readings that students take to monitor the status of the apparatus and measure the diffraction of the potassium atoms.
 Students measure three values at the oven housing.
 They measure the oven current, oven voltage, and the oven temperature.
 The oven temperature is measured from a type-J thermocouple as a voltage converted to a temperature value.
@@ -37,29 +37,29 @@ Once this has been achieved, students turn on the oven current to heat the oven 
 Once this temperature has been achieved the students then confirm that the detector wire current is operating between 4.0 and 4.3 A and that the pressure is still within operating values.
 To begin, students begin with the magnetic field off (no current through the solenoids) and thus no diffraction should occur.
 
-After all of this setup, students then rotate the knob on top of the aparatus to determine where the center of the beam is.
+After all of this setup, students then rotate the knob on top of the apparatus to determine where the center of the beam is.
 Once the students know where the center of the potassium beam is, they then turn on the magnetic field with the coil current to a value between 0.5 and 2.0 A.
 The stronger the magnetic field strength, the stronger the diffraction of the potassium atoms.
 The atoms are primarily governed by the spin of its electron in the outer-most orbital.
 Thus, the students see that the potassium beam splits into two.
 Adjusting the knob after this, students see that the splitting is equidistant, on opposite sides, from the center.
 
-The primary reason for updating the setup was to replace the large number of analog readings that the students must make with modern microcontroller readout.
+The primary reason for updating the setup was to replace the large number of analog readings that the students must make with modern micro-controller readout.
 To replace these signals, Arduino Unos and simple circuits were used to collect these readings.
-It was initially designed such that students would be able to use their smartphones to read the values collected by the Arduinos.
+It was initially designed such that students would be able to use their smart-phones to read the values collected by the Arduinos.
 
 There are, essentially, three general different circuit setups that are used, however some features are shared in common with each circuit.
 These commonalities will be discussed briefly before discussing how each of the three circuits differs.
 Initially, each measurement has an Arduino Uno powered by a 12 V at 1.67 A DC power supply.
 The 5~V and GND pins, as well as the SCL and SDA connections were connected to an ADS1115 12 bit gain amplifier analog to digital converter (ADC).
 The ADS1115 was chosen because it has 6 different gain settings available that allowed some flexibility in precision of the data measurement.
-The same pins that connected the Arduino to the ADS1115 connected to an HC-05 serial bluetooth module.
+The same pins that connected the Arduino to the ADS1115 connected to an HC-05 serial Bluetooth module.
 Except in one circuit case, one of the four ADS1115 analog input pins and the GND pin connect across a resistor, or voltage divider, depending on the particular circuit.
 The ADS1115 converts this analog voltage reading into a digital signal then sends this information to the Arduino.
 The Arduino then performs a calculation to convert the digital reading into the appropriate current or voltage reading, again depending on the particular circuit.
-The Arduino then sends this information via the Serial line to the bluetooth module.
-Once the students have paired their device to the bluetooth module, and downloaded the free Android app, are able to read the output from the Arduino on their smartphone.
-Due to reasons that will become clear when discussing student feedback in the next section, the bluetooth modules and the power supplies were replaced with a USB connector.
+The Arduino then sends this information via the Serial line to the Bluetooth module.
+Once the students have paired their device to the Bluetooth module, and downloaded the free Android app, are able to read the output from the Arduino on their smart-phone.
+Due to reasons that will become clear when discussing student feedback in the next section, the Bluetooth modules and the power supplies were replaced with a USB connector.
 Students then read all of their data to file using a Python program.
 
 In the special case of the temperature reading, the voltage that is read from the thermocouple is in the 0-10~mV range.
@@ -70,6 +70,6 @@ In the case of current measurement, current sense resistors with resistances bet
 The analog input of the ADS1115 connect to one side of the resistor and the other leg of the resistor connected to the GND pin.
 The small resistance values were chosen so to, as minimally as possible, avoid changing the optimum values flowing through the system.
 
-In the case of the larger voltage from the power supply, theese voltages typically exceed the maximum voltage which the ADS1115 and the Arduino can withstand.
-As such, a voltage divider  with voltage values of 3.33~$k\Omega$ and 6.67~$k\Omega$ were chosen to limit current and reduce the voltages to be within a tolerable range for the microcontroller.
+In the case of the larger voltage from the power supply, these voltages typically exceed the maximum voltage which the ADS1115 and the Arduino can withstand.
+As such, a voltage divider  with voltage values of 3.33~$k\Omega$ and 6.67~$k\Omega$ were chosen to limit current and reduce the voltages to be within a tolerable range for the micro-controller.
 The ADS1115 measured the voltage across the 3.33~$k\Omega$ resistor.

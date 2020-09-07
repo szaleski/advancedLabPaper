@@ -1,16 +1,16 @@
 \section{Gas Detector and Statistics}
-The Statistics portion of the Gas Detector and Statistics experiment was the first experiment in which the new microcontroller technology was implemented.
+The Statistics portion of the Gas Detector and Statistics experiment was the first experiment in which the new micro-controller technology was implemented.
 In this experiment students measure the number of counts registered by a GM counter using a fixed time window of the order of 1-10 $s$ depending on the strength of the source used.
 The number of decays from a Sr-90 source and the number of incident cosmic ray muons registered as counts in the time window are used to generate histograms.
 The histograms form a well defined (for sufficient number of collections) Gaussian distribution in the case of beta decays, and Poisson distribution in the case of the cosmic rays.
-The students then perform a statistical analysis consisting of finding the mean and standard deviation using standard statistical procdures as well as invoking a $\chi^2$-based analysis.
+The students then perform a statistical analysis consisting of finding the mean and standard deviation using standard statistical procedures as well as invoking a $\chi^2$-based analysis.
 
 The primary reason for updating this setup is that the traditional gas GM that was used no longer functioned properly and was expensive to replace.
 Another reason to move to an updated data acquisition setup was that the NIM crate and supporting modules used to power the GM and register counts required students to record the data using paper and pencil.
-Students have complained that this mode of data acquistion is out-dated, typically stating that many modern experiments use some form of computer, or other electronics, based data acquistion and logging.
+Students have complained that this mode of data acquisition is out-dated, typically stating that many modern experiments use some form of computer, or other electronics, based data acquisition and logging.
 
 
-In an attempt to address these issues, it was decided to use a PIN photodiode GM circuit available from RadiationWatch that is compatible with an Arduino Nano, and a Raspberry Pi, which we will simply refer to as Pi from here.
+In an attempt to address these issues, it was decided to use a PIN photo-diode GM circuit available from RadiationWatch that is compatible with an Arduino Nano, and a Raspberry Pi, which we will simply refer to as Pi from here.
 The GM is a roughly 1~$cm$ x 1~$cm$ with a thin copper shielding wrapped around it.
 The GM sits on a PCB having four connection pins.
 The Arduino 5~$V$ pin is connected to the V$_{CC}$ pin and the ground pins connect to each.
@@ -31,9 +31,9 @@ The focus of the experiment is, primarily, on writing code for a set of programs
 The students are required to write two pieces of code.
 One for controlling the Arduino data acquisition from the GM.
 The other is a simple Python program to read and record all of the data transmitted via the Arduino serial port.
-Python was chosen as the working programming language as an overwehlmingly large majority of students had, at least, some prior experience working with it.
+Python was chosen as the working programming language as an overwhelmingly large majority of students had, at least, some prior experience working with it.
 
-Students were not expected to have any prior experience working with Arduino microcontrollers, though some did.
+Students were not expected to have any prior experience working with Arduino micro-controllers, though some did.
 The code was written using the Arduino integrated development environment (IDE).
 The structure of the code was meant to be simple.
 Within this code students were expected to :
@@ -58,15 +58,15 @@ Within this code students were expected to :
 \end{enumerate}
 
 This code was quite simple for students to understand the flow, though the Arduino IDE utilizes a C-like language.
-Outside of some dfficulty understanding the signal pulse width relation to collection time and why the signals are digital low, there were no other difficulties for the students.
+Outside of some difficulty understanding the signal pulse width relation to collection time and why the signals are digital low, there were no other difficulties for the students.
 Most students were able to quickly and easily create this code.
 
-Students were expected to have a little stonger understanding of Python.
+Students were expected to have a little stronger understanding of Python.
 The Python script was still expected to be simple.
 The structure of the Python code was expected to be:
 \begin{enumerate}
 \item Import the PySerial library (this allows communication with the serial USB port within the Python program)
-\item Create an ouput .txt file to store data
+\item Create an output .txt file to store data
 \item Open a serial connection with the Arduino USB port with the proper baud rate.
 \item Within the data collection loop:
   \begin{enumerate}
@@ -93,8 +93,8 @@ The students then do the following:
   
 \end{enumerate}
 
-Students then remove the Sr-90 source and reposition the GM apparatus to collect cosmic ray muon data.
-The students then anlyzed the data by fitting it to either a Gaussian or a Poisson distribution depending on the source of radiation.
+Students then remove the Sr-90 source and re-position the GM apparatus to collect cosmic ray muon data.
+The students then analyzed the data by fitting it to either a Gaussian or a Poisson distribution depending on the source of radiation.
 The information from these fits is then used to fit the data to a $\chi^{2}$ distribution to determine a goodness of fit.
 
 
